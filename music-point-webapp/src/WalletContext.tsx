@@ -3,7 +3,7 @@ declare var window: any;
 
 interface defaultContextValueType {
     isConnected: boolean,
-    currentAccount: string,
+    currentAccount: string | null,
     ConnectToWallet: () => Promise<void>,
 }
 
@@ -15,7 +15,7 @@ const Context = React.createContext<defaultContextValueType>(undefined!)
 const { ethereum } = window
 
 function WalletContextProvider({ children }: Props) {
-    const [currentAccount, setCurrentAccount] = useState("")
+    const [currentAccount, setCurrentAccount] = useState(null)
     const [isConnected, setIsConnected] = useState(false)
 
 

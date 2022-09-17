@@ -4,7 +4,7 @@ footer{
     background-color: $dark-theme-background;
     position: fixed;
     bottom: 0;
-    width: 100vw;
+    width: 100%;
     .footer-inner-div{
         display: flex;
         justify-content: space-between;
@@ -12,6 +12,7 @@ footer{
         padding: 8px 10px;
         .about-me{
             color: $white-color;
+            margin-right: 20px;
             .know-more{
                 margin-left: 6px;
                 color: $white-color;
@@ -24,8 +25,7 @@ footer{
             padding: 5px 10px;
             color: $black-color;
             font-weight: 600;
-            width: max-content;
-            max-width: 200px;
+            min-width: 86px;
         }
     }
 }

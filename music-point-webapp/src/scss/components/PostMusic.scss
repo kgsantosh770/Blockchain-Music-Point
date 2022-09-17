@@ -1,0 +1,65 @@
+@import "../defaultImport.scss";
+
+.post-music-component {
+    color: $white-color;
+    margin-top: 20px;
+    padding: 20px 5%;
+    border-width: 1px;
+    box-shadow: rgba(218, 224, 230, 0.3) 0px 1px 2px 0px, rgba(218, 224, 230, 0.3) 0px 1px 3px 1px;
+    border-radius: 8px;
+
+    .title {
+        font-family: $font-sen-regular;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .sub-title {
+        font-size: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .total-music {
+        .count {
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        font-size: 18px;
+        margin: 0 0 17px 0;
+    }
+
+    .supported-links {}
+
+    .music-input-box {
+        max-width: 800px;
+        margin: 0 auto 30px;
+        text-align: left;
+
+        input {
+            width: 100%;
+            max-width: 800px;
+            height: 40px;
+            border-radius: 8px;
+            border: none;
+            box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
+            padding-left: 10px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .send-music-button {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border: none;
+            background-color: blueviolet;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            width: max-content;
+        }
+    }
+}
