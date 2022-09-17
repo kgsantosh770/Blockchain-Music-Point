@@ -1,0 +1,19 @@
+.wallet-connect-btn {
+    margin-top: 20px;
+    padding: 15px 20px;
+    border: none;
+    background-color: blueviolet;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 17px;
+
+    &.connected{
+        font-size: 15px;
+        padding: 10px 15px;
+        position: absolute;
+        top: 0;
+        right: 25px;
+        pointer-events: none;
+    }
+}

@@ -1,0 +1,23 @@
+.music-input-box {
+    margin-bottom: 30px;
+    input {
+        width: 70%;
+        height: 40px;
+        border-radius: 8px;
+        border: none;
+        box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
+        padding-left: 10px;
+        display: block;
+        margin: 0 auto;
+    }
+    .send-music-button {
+        margin-top: 20px;
+        padding: 15px 20px;
+        border: none;
+        background-color: blueviolet;
+        border-radius: 8px;
+        color: white;
+        cursor: pointer;
+        font-size: 15px;
+    }
+}
