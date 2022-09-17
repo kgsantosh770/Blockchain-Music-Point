@@ -1,0 +1,31 @@
+@import "../defaultImport.scss";
+
+footer{
+    background-color: $dark-theme-background;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    .footer-inner-div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 10px;
+        .about-me{
+            color: $white-color;
+            .know-more{
+                margin-left: 6px;
+                color: $white-color;
+            }
+        }
+        .hire-me-btn{
+            text-decoration: none;
+            background-color: $logo-background-color;
+            border-radius: 5px;
+            padding: 5px 10px;
+            color: $black-color;
+            font-weight: 600;
+            width: max-content;
+            max-width: 200px;
+        }
+    }
+}

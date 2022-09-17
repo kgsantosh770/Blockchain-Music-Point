@@ -8,6 +8,7 @@ import { useWalletContext } from "./WalletContext"
 
 import "./scss/components/App.scss"
 import Header from './components/Header'
+import Footer from './components/Footer'
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           {musicBoxes}
         </>
       } */}
+      <Footer />
     </div>
   );
 }
