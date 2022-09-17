@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import "../scss/ConnectToWallet.scss"
 import { useWalletContext } from "../WalletContext"
 
 export default function ConnectToWalletButton() {
 
-    const { isConnected, currentAccount, ConnectToWallet } = useWalletContext()
+    const { isConnected, ConnectToWallet } = useWalletContext()
 
     const [connecting, setConnecting] = useState(false)
 
