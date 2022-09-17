@@ -7,6 +7,7 @@ import ConnectToWallet from './components/ConnectToWalletButton'
 import { useWalletContext } from "./WalletContext"
 
 import "./scss/components/App.scss"
+import Header from './components/Header'
 
 
 function App() {
@@ -40,14 +41,15 @@ function App() {
 
   return (
     <div className="App">
-      <Hero />
+      <Header />
+      {/* <Hero />
       <ConnectToWallet />
       {currentAccount.length !== 0 &&
         <>
           <LinkInput handleClick={handlePostMusic} />
           {musicBoxes}
         </>
-      }
+      } */}
     </div>
   );
 }

@@ -1,0 +1,24 @@
+@import "../defaultImport.scss";
+
+header {
+    box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
+    padding: 10px 25px 10px 20px;
+    display: flex;
+    align-items: center;
+    
+    .homepage-link{
+        margin-right: 10px;
+        .portfolio-link-icon {
+            @include square-width-height(37px);
+            display: block;
+            border-radius: 50%;
+        }
+    }
+
+    .app-title {
+        color: $white-color;
+        font-family: $font-sen-regular;
+        font-weight: bold;
+        font-size: 22px;
+    }
+}

@@ -1,6 +1,7 @@
 const iconsPath = "/media/icons/"
 
-export const linkIcon = iconsPath + "link.png"
+export const blockchain = iconsPath + "link.png"
+export const logo = iconsPath + "logo.png"
 export const walletNotConnected = iconsPath + "wallet-not-connected.png"
 export const walletConnectionError = iconsPath + "wallet-connection-error.png"
 export const walletConnected = iconsPath + "wallet-connected.png"

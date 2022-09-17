@@ -1,19 +1,32 @@
-.wallet-connect-btn {
-    margin-top: 20px;
-    padding: 15px 20px;
-    border: none;
-    background-color: blueviolet;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    font-size: 17px;
+@import "../defaultImport.scss";
 
-    &.connected{
-        font-size: 15px;
-        padding: 10px 15px;
-        position: absolute;
-        top: 0;
-        right: 25px;
-        pointer-events: none;
+.wallet-component {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+
+    .wallet-connect-btn {
+        cursor: pointer;
+        background: $blue-background;
+        border-radius: 6px;
+        color: $white-color;
+        padding: 8px 15px;
+        margin-right: 5px;
+        font-size: 13px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+        max-width: 213px;
+
+        &.connected {
+            background-color: $dark-grey-background;
+            pointer-events: none;
+        }
+
     }
+    .wallet {
+        @include square-width-height(37px);
+    }
+
 }
