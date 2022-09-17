@@ -4,7 +4,7 @@ import LinkInput from "./components/LinkInput";
 import MusicBox from './components/MusicBox';
 import ConnectToWallet from './components/ConnectToWalletButton';
 import { useWalletContext } from "./WalletContext"
-import { ContractPostMusic, ContractGetTotalMusic } from "./contracts/MusicPointFunctions"
+import { ContractPostMusic, ContractGetMusicCount } from "./contracts/MusicPointFunctions"
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
   const [totalMusic, setTotalMusic] = useState(0);
 
   useEffect(()=>{
-    ContractGetTotalMusic()
+    ContractGetMusicCount()
       .then(res => setTotalMusic(res))
   },[])
 

@@ -26,7 +26,7 @@ const postMusic = async (url: string) => {
     console.log("came in postmusic sol function")
 
     if (musicPortalContract) {
-      let count = await musicPortalContract.getTotalMusic();
+      let count = await musicPortalContract.getMusicCount();
       console.log("Retrieved total music count...", count.toNumber());
 
       const musicTxn = await musicPortalContract.postMusic(url);
@@ -35,7 +35,7 @@ const postMusic = async (url: string) => {
       await musicTxn.wait();
       console.log("Mined -- ", musicTxn.hash);
 
-      count = await musicPortalContract.getTotalMusic();
+      count = await musicPortalContract.getMusicCount();
       console.log("Retrieved total music count...", count.toNumber());
     }
   } catch (error) {
@@ -43,13 +43,13 @@ const postMusic = async (url: string) => {
   }
 }
 
-const getTotalMusic = async () => {
+const getMusicCount = async () => {
   try {
     const musicPortalContract = getMusicPortalContract();
     console.log("came in gettotalmusic sol function")
     
     if (musicPortalContract) {
-      let count = await musicPortalContract.getTotalMusic();
+      let count = await musicPortalContract.getMusicCount();
       count = count.toNumber();
       console.log(count, " total music")
       return count;
@@ -62,5 +62,5 @@ const getTotalMusic = async () => {
 
 export {
   postMusic as ContractPostMusic,
-  getTotalMusic as ContractGetTotalMusic
+  getMusicCount as ContractGetMusicCount
 }
