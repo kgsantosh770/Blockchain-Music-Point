@@ -1,4 +1,7 @@
+@import "../defaultImport.scss";
+
 .hero {
+    color: $white-color;
     .bio {
         font-size: 20px;
         padding-bottom: 20px;

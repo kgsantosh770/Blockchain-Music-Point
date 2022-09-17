@@ -43,6 +43,16 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <div className="container-fluid">
+        <div className="row mx-0">
+          <div className="col-lg-10 col-md-12">
+            <Hero />
+          </div>
+          <div className="col-lg-2 col-md-12">
+
+          </div>
+        </div>
+      </div>
       {/* <Hero />
       <ConnectToWallet />
       {currentAccount.length !== 0 &&

@@ -1,3 +1,5 @@
+@import "../defaultImport.scss";
+
 .App{
-    background: black;
+    background: $dark-theme-background;
 }
