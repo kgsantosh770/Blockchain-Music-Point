@@ -1,5 +1,4 @@
-import React from "react";
-import "../scss/MusicBox.scss";
+import "../scss/components/MusicBox.scss";
 
 interface Props {
     owner: string,

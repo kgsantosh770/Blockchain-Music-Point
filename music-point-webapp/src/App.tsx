@@ -1,10 +1,13 @@
-import React, { FormEvent, useState, useEffect } from 'react';
-import "./scss/App.scss";
-import LinkInput from "./components/LinkInput";
-import MusicBox from './components/MusicBox';
-import ConnectToWallet from './components/ConnectToWalletButton';
+import { FormEvent, useState } from 'react'
+
+import Hero from "./components/Hero"
+import LinkInput from "./components/LinkInput"
+import MusicBox from './components/MusicBox'
+import ConnectToWallet from './components/ConnectToWalletButton'
 import { useWalletContext } from "./WalletContext"
-import { ContractPostMusic, ContractGetMusicCount } from "./contracts/MusicPointFunctions"
+
+import "./scss/components/App.scss"
+
 
 function App() {
 
@@ -18,12 +21,6 @@ function App() {
   interface AllMusic extends Array<Music> { }
 
   const [allMusicData, setAllMusicData] = useState<AllMusic>([]);
-  const [totalMusic, setTotalMusic] = useState(0);
-
-  useEffect(()=>{
-    ContractGetMusicCount()
-      .then(res => setTotalMusic(res))
-  },[])
 
   const musicBoxes = allMusicData.map((data, i) =>
     <MusicBox key={i} owner={data.owner} musicUrl={data.musicUrl} />
@@ -35,24 +32,15 @@ function App() {
       owner: _owner,
       musicUrl: _musicUrl,
     }
-    ContractPostMusic(_musicUrl)
-      .then(() => setAllMusicData([newMusicObject, ...allMusicData]))
-      .then(() => setTotalMusic(prevCount => prevCount+1))
+    // ContractPostMusic(_musicUrl)
+    //   .then(() => setAllMusicData([newMusicObject, ...allMusicData]))
+    //   .then(() => setTotalMusic(prevCount => prevCount+1))
   }
 
 
   return (
     <div className="App">
-      <h1>👋 Hey everyone!</h1>
-      <div className="bio">
-        I am Santosh. This is my first blockchain project. Send a music link to me :)
-      </div>
-      <div className='total-music'>
-        <span className="count">
-          {totalMusic}
-        </span>
-        members has shared music here !!!!
-      </div>
+      <Hero />
       <ConnectToWallet />
       {currentAccount.length !== 0 &&
         <>

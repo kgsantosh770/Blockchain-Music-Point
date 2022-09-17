@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../scss/ConnectToWallet.scss"
+import "../scss/components/ConnectToWallet.scss"
 import { useWalletContext } from "../WalletContext"
 
 export default function ConnectToWalletButton() {

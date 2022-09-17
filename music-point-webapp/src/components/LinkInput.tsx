@@ -1,5 +1,5 @@
-import React, { FormEvent, useEffect, useState, useRef } from "react"
-import "../scss/LinkInput.scss"
+import { FormEvent, useEffect, useState, useRef } from "react"
+import "../scss/components/LinkInput.scss"
 import { useWalletContext } from "../WalletContext"
 
 interface Props {
