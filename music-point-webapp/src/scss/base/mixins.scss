@@ -1,0 +1,4 @@
+@mixin square-width-height($size: 40px) {
+    width: $size;
+    height: $size;
+}
