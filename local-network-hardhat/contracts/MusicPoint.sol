@@ -16,18 +16,16 @@ contract MusicPoint {
 
     Music[] musics;
 
-    constructor() {
-        console.log("Yo yo, I am a music contract and I am smart");
-    }
-
     function postMusic(string memory _url) public {
-        console.log("%s has posted music! - %s", msg.sender, _url);
         musics.push(Music(msg.sender, _url, block.timestamp));
         emit PostMusic(msg.sender, _url, block.timestamp);
     }
 
-    function getTotalMusic() public view returns (uint256) {
-        console.log("We have %d total music!", musics.length);
+    function getMusicCount() public view returns (uint256) {
         return musics.length;
+    }
+
+    function getAllMusic() public view returns(Music[] memory) {
+        return musics;
     }
 }
