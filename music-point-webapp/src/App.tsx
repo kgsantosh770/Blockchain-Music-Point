@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 
 import PostMusic from "./components/PostMusic"
 import MusicBox from './components/MusicBox'
@@ -9,6 +9,7 @@ import "./scss/components/App.scss"
 import Header from './components/Header'
 import Footer from './components/Footer'
 import OuterBox from './components/OuterBox'
+import { ContractGetAllMusic, ContractPostMusic } from './contracts/MusicPointFunctions'
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
   const { currentAccount } = useWalletContext()
 
   interface Music {
-    owner: string,
+    ownerAdress: string,
     musicUrl: string,
     timePosted: Date,
   }
@@ -25,29 +26,36 @@ function App() {
 
   const [allMusicData, setAllMusicData] = useState<AllMusic>([]);
 
+  useEffect(() => {
+    ContractGetAllMusic()
+      .then(allMusic => {
+        if(allMusic)
+          setAllMusicData(allMusic)
+      })
+  }, [])
+
   function handlePostMusic(event: FormEvent, _owner: string, _musicUrl: string) {
     event.preventDefault();
     const newMusicObject = {
-      owner: _owner,
+      ownerAdress: _owner,
       musicUrl: _musicUrl,
       timePosted: new Date()
     }
-    // ContractPostMusic(_musicUrl)
-    //   .then(() => setAllMusicData([newMusicObject, ...allMusicData]))
-    //   .then(() => setTotalMusic(prevCount => prevCount+1))
+    ContractPostMusic(_musicUrl)
+      .then(() => setAllMusicData([newMusicObject, ...allMusicData]))
   }
 
   const musicBoxes = (musicList: AllMusic, isChain = false) => musicList.map((data, i) =>
     <MusicBox key={i}
-      owner={data.owner}
+      owner={data.ownerAdress}
       isChain={isChain}
       musicUrl={data.musicUrl}
       timePosted={data.timePosted} />
   )
 
   const myMusics = allMusicData.filter(data => {
-    console.log(data.owner)
-    return data.owner == "owner2"
+    console.log(data.ownerAdress)
+    return data.ownerAdress == "owner2"
   })
 
   return (

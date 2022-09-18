@@ -1,5 +1,5 @@
 import { ethers } from "ethers"
-import {MusicPointData} from "../utils/MusicPointData"
+import { MusicPointData } from "../utils/MusicPointData"
 
 declare var window: any
 
@@ -43,11 +43,31 @@ const postMusic = async (url: string) => {
   }
 }
 
+const getAllMusic = async () => {
+  try {
+    const musicPortalContract = getMusicPortalContract();
+    if (musicPortalContract) {
+      let allMusic = await musicPortalContract.getAllMusic();
+      console.log(allMusic)
+      let musicCleaned: { ownerAdress: string; timePosted: Date; musicUrl: string }[] = [];
+      allMusic.forEach((music: any) => {
+        musicCleaned.push({
+          ownerAdress: music.ownerAdress,
+          timePosted: new Date(music.timestamp * 1000),
+          musicUrl: music.url
+        });
+      });
+      return musicCleaned;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 const getMusicCount = async () => {
   try {
     const musicPortalContract = getMusicPortalContract();
-    console.log("came in gettotalmusic sol function")
-    
+
     if (musicPortalContract) {
       let count = await musicPortalContract.getMusicCount();
       count = count.toNumber();
@@ -62,5 +82,6 @@ const getMusicCount = async () => {
 
 export {
   postMusic as ContractPostMusic,
-  getMusicCount as ContractGetMusicCount
+  getMusicCount as ContractGetMusicCount,
+  getAllMusic as ContractGetAllMusic
 }

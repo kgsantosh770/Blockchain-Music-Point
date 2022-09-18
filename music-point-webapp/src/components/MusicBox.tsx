@@ -39,13 +39,13 @@ export default function MusicBox(props: Props) {
         <div className="music-box">
             {props.isChain && <div className="time-line"></div>}
             <img className="music-web-logo" src={spotify} alt="block-number" />
-            <div>
-                <div className="music-owner bold">
+            <div className="music-owner-url">
+                <div className="music-owner bold d-block text-truncate">
                     {props.owner}
                 </div>
-                <div className="music-url">
+                <a href={props.musicUrl} className="music-url text-white">
                     {props.musicUrl}
-                </div>
+                </a>
                 <span className="time-posted">
                     {formatDateTime(props.timePosted)}
                 </span>
