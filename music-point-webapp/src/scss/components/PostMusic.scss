@@ -26,7 +26,8 @@
     }
 
     .supported-links {
-        margin: 10px 0;
+        margin: 10px auto;
+        max-width: 800px;
 
         .supported-links-text {
             font-weight: bold;
