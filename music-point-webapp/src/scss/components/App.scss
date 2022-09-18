@@ -2,4 +2,14 @@
 
 .App{
     background: $dark-theme-background;
+
+    .all-musics {
+        position: relative;
+        .loading {
+            @include square-width-height(35px);
+            position: absolute;
+            top: 20px;
+            right: 5%;
+        }
+    }
 }

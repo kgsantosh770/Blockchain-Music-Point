@@ -10,6 +10,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import OuterBox from './components/OuterBox'
 import { ContractGetAllMusic, ContractPostMusic } from './contracts/MusicPointFunctions'
+import { loadingAnimatedIcon } from './utils/ImagePaths'
 
 
 function App() {
@@ -24,14 +25,17 @@ function App() {
 
   interface AllMusic extends Array<Music> { }
 
-  const [allMusicData, setAllMusicData] = useState<AllMusic>([]);
+  const [allMusicData, setAllMusicData] = useState<AllMusic>([])
+  const [musicsLoading, setMusicsLoading] = useState(false)
 
   useEffect(() => {
+    setMusicsLoading(true)
     ContractGetAllMusic()
       .then(allMusic => {
         if(allMusic)
           setAllMusicData(allMusic)
       })
+      .then(()=>setMusicsLoading(false))
   }, [])
 
   function handlePostMusic(event: FormEvent, _owner: string, _musicUrl: string) {
@@ -41,8 +45,8 @@ function App() {
       musicUrl: _musicUrl,
       timePosted: new Date()
     }
-    ContractPostMusic(_musicUrl)
-      .then(() => setAllMusicData([newMusicObject, ...allMusicData]))
+    // ContractPostMusic(_musicUrl)
+    //   .then(() => setAllMusicData([newMusicObject, ...allMusicData]))
   }
 
   const musicBoxes = (musicList: AllMusic, isChain = false) => musicList.map((data, i) =>
@@ -67,15 +71,18 @@ function App() {
             <OuterBox>
               <PostMusic handlePostMusic={handlePostMusic} />
             </OuterBox>
-            <OuterBox>
+            <OuterBox additionalClass='all-musics'>
               <h1 className='text-white font-weight-bold'>Musics Posted</h1>
               {
-                allMusicData.length === 0 ?
-                  <div className='text-white mt-3 fst-italic'>
-                    Be the first to create the <b>MUSIC GENESIS</b>
-                  </div> :
-                  musicBoxes(allMusicData, true)
+                musicsLoading ?
+                  <img className='loading' src={loadingAnimatedIcon} alt="loading" title="loading" /> :
+                  allMusicData.length === 0 ?
+                    <div className='text-white mt-3 fst-italic'>
+                      Be the first to create the <b>MUSIC GENESIS</b>
+                    </div> :
+                    musicBoxes(allMusicData, true)
               }
+
             </OuterBox>
           </div>
           <div className="col-lg-4 col-md-12">
