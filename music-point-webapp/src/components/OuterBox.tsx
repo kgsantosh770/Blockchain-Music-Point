@@ -6,6 +6,10 @@ interface Props {
     children?: ReactNode | ReactNode[]
 }
 
+const defaultProps = {
+    additionalClass: ""
+}
+
 export default function OuterBox(props : Props) {
     return (
         <div className={`outer-box ${props.additionalClass}`}>
@@ -13,3 +17,5 @@ export default function OuterBox(props : Props) {
         </div>
     )
 }
+
+OuterBox.defaultProps = defaultProps;

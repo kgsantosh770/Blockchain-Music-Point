@@ -5,6 +5,11 @@ interface Props {
     owner: string,
     musicUrl: string,
     timePosted: Date,
+    isChain?: boolean,
+}
+
+const defaultProps = {
+    isChain: false,
 }
 
 export default function MusicBox(props: Props) {
@@ -32,7 +37,7 @@ export default function MusicBox(props: Props) {
 
     return (
         <div className="music-box">
-            <div className="time-line"></div>
+            {props.isChain && <div className="time-line"></div>}
             <img className="music-web-logo" src={spotify} alt="block-number" />
             <div>
                 <div className="music-owner bold">
@@ -48,3 +53,5 @@ export default function MusicBox(props: Props) {
         </div>
     )
 }
+
+MusicBox.defaultProps = defaultProps;

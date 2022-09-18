@@ -23,24 +23,7 @@ function App() {
 
   interface AllMusic extends Array<Music> { }
 
-  const dummyData = [
-    {
-      owner: "owner",
-      musicUrl: "https://spotify.com/my-link-url",
-      timePosted: new Date("11/10/2021")
-    },
-    {
-      owner: "owner",
-      musicUrl: "https://spotify.com/my-link-url",
-      timePosted: new Date()
-    },
-    {
-      owner: "owner",
-      musicUrl: "https://spotify.com/my-link-url",
-      timePosted: new Date()
-    }
-  ]
-  const [allMusicData, setAllMusicData] = useState<AllMusic>(dummyData);
+  const [allMusicData, setAllMusicData] = useState<AllMusic>([]);
 
   function handlePostMusic(event: FormEvent, _owner: string, _musicUrl: string) {
     event.preventDefault();
@@ -54,9 +37,18 @@ function App() {
     //   .then(() => setTotalMusic(prevCount => prevCount+1))
   }
 
-  const musicBoxes = allMusicData.map((data, i) =>
-    <MusicBox key={i} owner={data.owner} musicUrl={data.musicUrl} timePosted={data.timePosted} />
+  const musicBoxes = (musicList: AllMusic, isChain = false) => musicList.map((data, i) =>
+    <MusicBox key={i}
+      owner={data.owner}
+      isChain={isChain}
+      musicUrl={data.musicUrl}
+      timePosted={data.timePosted} />
   )
+
+  const myMusics = allMusicData.filter(data => {
+    console.log(data.owner)
+    return data.owner == "owner2"
+  })
 
   return (
     <div className="App">
@@ -68,23 +60,30 @@ function App() {
               <PostMusic handlePostMusic={handlePostMusic} />
             </OuterBox>
             <OuterBox>
-              <h1 style={{color: "white", fontWeight: "bold"}}>Musics Posted</h1>
-              {musicBoxes}
+              <h1 className='text-white font-weight-bold'>Musics Posted</h1>
+              {
+                allMusicData.length === 0 ?
+                  <div className='text-white mt-3 fst-italic'>
+                    Be the first to create the <b>MUSIC GENESIS</b>
+                  </div> :
+                  musicBoxes(allMusicData, true)
+              }
             </OuterBox>
           </div>
           <div className="col-lg-4 col-md-12">
-
+            <OuterBox>
+              <h1 className='text-white font-weight-bold'>My musics</h1>
+              {
+                myMusics.length === 0 ?
+                  <div className='text-white mt-3 fst-italic'>
+                    You have not posted any music yet :(
+                  </div> :
+                  musicBoxes(myMusics, true)
+              }
+            </OuterBox>
           </div>
         </div>
       </div>
-      {/* <Hero />
-      <ConnectToWallet />
-      {currentAccount.length !== 0 &&
-        <>
-          <LinkInput handleClick={handlePostMusic} />
-          {musicBoxes}
-        </>
-      } */}
       <Footer />
     </div>
   );

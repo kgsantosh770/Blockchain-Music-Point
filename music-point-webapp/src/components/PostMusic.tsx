@@ -2,7 +2,6 @@ import "../scss/components/PostMusic.scss"
 import { FormEvent, useEffect, useState, useRef } from "react"
 import { ContractGetMusicCount } from "../contracts/MusicPointFunctions"
 import { useWalletContext } from "../WalletContext"
-import * as icons from "../utils/ImagePaths"
 import { supportedWebUrls } from "../utils/SupportedMusicWebsites"
 
 interface Props {
@@ -25,9 +24,10 @@ export default function PostMusic(props: Props) {
     }
 
     
-    const supportedLinks = supportedWebUrls.map(supportedUrl => {
+    const supportedLinks = supportedWebUrls.map((supportedUrl, i) => {
         return (
             <img
+                key={i}
                 className={`supported-link ${supportedUrl.website}`}
                 src={supportedUrl.imagePath}
                 alt={supportedUrl.website}
@@ -54,6 +54,7 @@ export default function PostMusic(props: Props) {
                     type="url"
                     placeholder="Enter your music url"
                     onChange={handleChange}
+                    autoComplete="off"
                     required
                 />
 

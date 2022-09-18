@@ -3,7 +3,8 @@
 .outer-box {
     margin-top: 20px;
     padding: 20px 5%;
-    border-width: 1px;
-    box-shadow: rgba(218, 224, 230, 0.3) 0px 1px 2px 0px, rgba(218, 224, 230, 0.3) 0px 1px 3px 1px;
+    background-color: $dark-grey-background;
+    // border-width: 1px;
+    // box-shadow: 0px 5px 10px 0px rgba(167, 159, 159, 0.5);
     border-radius: 8px;
 }
