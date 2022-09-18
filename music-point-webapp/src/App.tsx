@@ -90,11 +90,11 @@ function App() {
               {
                 musicsLoading ?
                   <img className='loading' src={loadingAnimatedIcon} alt="loading" title="loading" /> :
-                  allMusicData.length === 0 ?
+                  myMusics.length === 0 ?
                     <div className='text-white mt-3 fst-italic'>
-                      Be the first to create the <b>MUSIC GENESIS</b>
+                      You have not posted any music yet :(
                     </div> :
-                    musicBoxes(allMusicData, true)
+                    musicBoxes(myMusics)
               }
             </OuterBox>
           </div>

@@ -16,13 +16,6 @@
     .my-music {
         .music-box .music-owner-url {
             width: 63%;
-
-            .music-url {
-                display: block;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            }
         }
     }
 }

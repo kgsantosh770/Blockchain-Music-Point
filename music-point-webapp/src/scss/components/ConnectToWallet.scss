@@ -20,6 +20,10 @@
         max-width: 213px;
         border: none;
 
+        @media #{$mobile} {
+            max-width: 100px;
+        }
+
         &.connected {
             background-color: $dark-grey-background;
             pointer-events: none;
