@@ -6,18 +6,10 @@ import * as icons from "../utils/ImagePaths"
 import { supportedWebUrls } from "../utils/SupportedMusicWebsites"
 
 interface Props {
-    handleClick: Function
+    handlePostMusic: Function
 }
 
-
-export default function PostMusic() {
-    const [totalMusic, setTotalMusic] = useState(0);
-
-    // useEffect(() => {
-    //     ContractGetMusicCount()
-    //         .then(res => setTotalMusic(res))
-    // }, [])
-
+export default function PostMusic(props: Props) {
     const { currentAccount } = useWalletContext()
     const [owner, setOwner] = useState("Anonymous user")
     const [musicUrl, setMusicUrl] = useState("")
@@ -32,18 +24,7 @@ export default function PostMusic() {
         setMusicUrl(event.currentTarget.value)
     }
 
-    function handlePostMusic(event: FormEvent, _owner: string, _musicUrl: string) {
-        event.preventDefault();
-        const newMusicObject = {
-            owner: _owner,
-            musicUrl: _musicUrl,
-        }
-        // ContractPostMusic(_musicUrl)
-        //   .then(() => setAllMusicData([newMusicObject, ...allMusicData]))
-        //   .then(() => setTotalMusic(prevCount => prevCount+1))
-    }
-
-
+    
     const supportedLinks = supportedWebUrls.map(supportedUrl => {
         return (
             <img
@@ -62,7 +43,7 @@ export default function PostMusic() {
                 Let your favorite music rule the world. Post your music link here.
             </div>
             <div className="supported-links">
-                Supported links
+                <span className="supported-links-text">Supported links</span>
                 {supportedLinks}
             </div>
             <div className="music-input-box">
@@ -81,7 +62,7 @@ export default function PostMusic() {
                         if (inputRef.current)
                             inputRef.current.focus();
                         setMusicUrl("")
-                        handlePostMusic(e, owner, musicUrl)
+                        props.handlePostMusic(e, owner, musicUrl)
                     }}
                     className="send-music-button"
                 >

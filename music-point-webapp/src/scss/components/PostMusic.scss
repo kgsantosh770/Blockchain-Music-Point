@@ -2,12 +2,6 @@
 
 .post-music-component {
     color: $white-color;
-    margin-top: 20px;
-    padding: 20px 5%;
-    border-width: 1px;
-    box-shadow: rgba(218, 224, 230, 0.3) 0px 1px 2px 0px, rgba(218, 224, 230, 0.3) 0px 1px 3px 1px;
-    border-radius: 8px;
-
     .title {
         font-family: $font-sen-regular;
         font-weight: bold;
@@ -31,7 +25,18 @@
         margin: 0 0 17px 0;
     }
 
-    .supported-links {}
+    .supported-links {
+        margin: 10px 0;
+
+        .supported-links-text {
+            font-weight: bold;
+        }
+
+        .supported-link {
+            @include square-width-height(30px);
+            margin: 0 2.5px 6px;
+        }
+    }
 
     .music-input-box {
         max-width: 800px;
@@ -41,18 +46,20 @@
         input {
             width: 100%;
             max-width: 800px;
-            height: 40px;
+            height: 45px;
             border-radius: 8px;
             border: none;
             box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
-            padding-left: 10px;
+            padding: 0 10px;
             margin: 0 auto;
             display: block;
+            &:focus{
+                outline: none;
+            }
         }
 
         .send-music-button {
-            margin-top: 20px;
-            padding: 15px 20px;
+            padding: 10px 20px;
             border: none;
             background-color: blueviolet;
             border-radius: 8px;
@@ -60,6 +67,8 @@
             cursor: pointer;
             font-size: 15px;
             width: max-content;
+            display: block;
+            margin: 20px auto 0;
         }
     }
 }

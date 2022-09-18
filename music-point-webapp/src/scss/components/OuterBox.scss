@@ -1,0 +1,9 @@
+@import "../defaultImport.scss";
+
+.outer-box {
+    margin-top: 20px;
+    padding: 20px 5%;
+    border-width: 1px;
+    box-shadow: rgba(218, 224, 230, 0.3) 0px 1px 2px 0px, rgba(218, 224, 230, 0.3) 0px 1px 3px 1px;
+    border-radius: 8px;
+}

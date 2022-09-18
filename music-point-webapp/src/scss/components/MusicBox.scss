@@ -1,13 +1,36 @@
+@import "../defaultImport.scss";
+
 .music-box {
+    color: $white-color;
     width: 80%;
-    box-shadow: rgba(99, 99, 99, 0.5) 0px 2px 8px 0px;
-    background-color: whitesmoke;
     display: block;
-    margin: 0 auto;
     border-radius: 8px;
     text-align: left;
-    padding: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0;
+    display: flex;
+    position: relative;
+    width: 100%;
+    min-height: 55px;
+
+    &:last-child{
+        .time-line{
+            display: none;
+        }
+    }
+
+    .time-line{
+        width: 2px;
+        height: calc(100% - 27px);
+        position: absolute;
+        left: 19px;
+        top: 44px;
+        background-color: $white-color;
+    }
+    .music-web-logo {
+        @include square-width-height(40px);
+        margin-right: 20px;
+        z-index: 1;
+    }
 
     .bold {
         font-weight: bold;
@@ -15,10 +38,17 @@
 
     .music-owner{
         font-size: 16px;
-        line-height: 20px;
+        line-height: 30px;
     }
 
     .music-url {
-        margin-top: 10px;
+        font-size: 14px;
+        line-height: 30px;
+    }
+
+    .time-posted {
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 }
