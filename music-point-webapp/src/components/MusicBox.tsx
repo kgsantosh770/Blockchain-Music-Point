@@ -43,7 +43,7 @@ export default function MusicBox(props: Props) {
                 <div className="music-owner bold d-block text-truncate">
                     {props.owner}
                 </div>
-                <a href={props.musicUrl} className="music-url text-white">
+                <a href={props.musicUrl} className="music-url text-white" target="blank">
                     {props.musicUrl}
                 </a>
                 <span className="time-posted">

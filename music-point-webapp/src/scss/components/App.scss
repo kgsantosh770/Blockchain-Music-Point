@@ -1,15 +1,29 @@
 @import "../defaultImport.scss";
 
-.App{
+.App {
     background: $dark-theme-background;
 
     .all-musics {
         position: relative;
+
         .loading {
             @include square-width-height(35px);
             position: absolute;
             top: 20px;
             right: 5%;
+        }
+    }
+
+    .my-music {
+        .music-box .music-owner-url {
+            width: 63%;
+
+            .music-url {
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
         }
     }
 }

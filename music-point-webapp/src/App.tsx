@@ -58,8 +58,7 @@ function App() {
   )
 
   const myMusics = allMusicData.filter(data => {
-    console.log(data.ownerAdress)
-    return data.ownerAdress == "owner2"
+    return data.ownerAdress?.toLowerCase() == currentAccount?.toLowerCase();
   })
 
   return (
@@ -86,7 +85,7 @@ function App() {
             </OuterBox>
           </div>
           <div className="col-lg-4 col-md-12">
-            <OuterBox>
+            <OuterBox additionalClass='my-music'>
               <h1 className='text-white font-weight-bold'>My musics</h1>
               {
                 myMusics.length === 0 ?
