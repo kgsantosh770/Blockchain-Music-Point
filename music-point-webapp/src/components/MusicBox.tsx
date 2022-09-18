@@ -27,7 +27,7 @@ export default function MusicBox(props: Props) {
 
         let formattedDate;
         if (year < currentYear) {
-            formattedDate = day + " " + month + " " + year
+            formattedDate = month + " " + year
         } else {
             formattedDate = day + " " + month
         }

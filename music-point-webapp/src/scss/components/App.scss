@@ -3,13 +3,12 @@
 .App {
     background: $dark-theme-background;
 
-    .all-musics {
+    .music-outer-box{
         position: relative;
-
         .loading {
             @include square-width-height(35px);
             position: absolute;
-            top: 20px;
+            top: 25px;
             right: 5%;
         }
     }

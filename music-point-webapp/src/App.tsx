@@ -70,7 +70,7 @@ function App() {
             <OuterBox>
               <PostMusic handlePostMusic={handlePostMusic} />
             </OuterBox>
-            <OuterBox additionalClass='all-musics'>
+            <OuterBox additionalClass='music-outer-box all-musics'>
               <h1 className='text-white font-weight-bold'>Musics Posted</h1>
               {
                 musicsLoading ?
@@ -85,14 +85,16 @@ function App() {
             </OuterBox>
           </div>
           <div className="col-lg-4 col-md-12">
-            <OuterBox additionalClass='my-music'>
+            <OuterBox additionalClass='music-outer-box my-music'>
               <h1 className='text-white font-weight-bold'>My musics</h1>
               {
-                myMusics.length === 0 ?
-                  <div className='text-white mt-3 fst-italic'>
-                    You have not posted any music yet :(
-                  </div> :
-                  musicBoxes(myMusics, true)
+                musicsLoading ?
+                  <img className='loading' src={loadingAnimatedIcon} alt="loading" title="loading" /> :
+                  allMusicData.length === 0 ?
+                    <div className='text-white mt-3 fst-italic'>
+                      Be the first to create the <b>MUSIC GENESIS</b>
+                    </div> :
+                    musicBoxes(allMusicData, true)
               }
             </OuterBox>
           </div>
