@@ -60,6 +60,12 @@
             }
         }
 
+        .error-box {
+            color: $error-color;
+            margin-top: 10px;
+            text-align: center;
+        }
+
         .send-music-button {
             padding: 10px 20px;
             border: none;

@@ -1,6 +1,4 @@
 import ConnectToWalletButton from "./ConnectToWalletButton";
-import { logo } from "../utils/ImagePaths"
-
 import "../scss/components/Header.scss"
 
 export default function Header() {

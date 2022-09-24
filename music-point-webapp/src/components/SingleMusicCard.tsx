@@ -1,4 +1,4 @@
-import "../scss/components/MusicBox.scss";
+import "../scss/components/SingleMusicCard.scss";
 import { spotify } from "../utils/ImagePaths";
 
 interface Props {
@@ -12,7 +12,7 @@ const defaultProps = {
     isChain: false,
 }
 
-export default function MusicBox(props: Props) {
+export default function SingleMusicCard(props: Props) {
     const getMonthName = (month: number) => {
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
@@ -36,7 +36,7 @@ export default function MusicBox(props: Props) {
     }
 
     return (
-        <div className="music-box">
+        <div className="single-music-box">
             {props.isChain && <div className="time-line"></div>}
             <img className="music-web-logo" src={spotify} alt="block-number" />
             <div className="music-owner-url">
@@ -54,4 +54,4 @@ export default function MusicBox(props: Props) {
     )
 }
 
-MusicBox.defaultProps = defaultProps;
+SingleMusicCard.defaultProps = defaultProps;

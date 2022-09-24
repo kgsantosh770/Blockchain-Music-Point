@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 declare var window: any;
 
 interface defaultContextValueType {
@@ -31,6 +31,7 @@ function WalletContextProvider({ children }: Props) {
                 return;
             }
         } catch (error) {
+            setIsConnected(false)
             console.log(error)
         }
     }

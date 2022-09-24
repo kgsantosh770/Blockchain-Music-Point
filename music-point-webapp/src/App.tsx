@@ -1,8 +1,7 @@
 import { FormEvent, useEffect, useState } from 'react'
 
 import PostMusic from "./components/PostMusic"
-import MusicBox from './components/MusicBox'
-import ConnectToWallet from './components/ConnectToWalletButton'
+import SingleMusicCard from './components/SingleMusicCard'
 import { useWalletContext } from "./WalletContext"
 
 import "./scss/components/App.scss"
@@ -50,7 +49,7 @@ function App() {
   }
 
   const musicBoxes = (musicList: AllMusic, isChain = false) => musicList.map((data, i) =>
-    <MusicBox key={i}
+    <SingleMusicCard key={i}
       owner={data.ownerAdress}
       isChain={isChain}
       musicUrl={data.musicUrl}
@@ -58,7 +57,7 @@ function App() {
   )
 
   const myMusics = allMusicData.filter(data => {
-    return data.ownerAdress?.toLowerCase() == currentAccount?.toLowerCase();
+    return data.ownerAdress?.toLowerCase() === currentAccount?.toLowerCase();
   })
 
   return (
@@ -70,32 +69,23 @@ function App() {
             <OuterBox>
               <PostMusic handlePostMusic={handlePostMusic} />
             </OuterBox>
-            <OuterBox additionalClass='music-outer-box all-musics'>
-              <h1 className='text-white font-weight-bold'>Musics Posted</h1>
-              {
-                musicsLoading ?
-                  <img className='loading' src={loadingAnimatedIcon} alt="loading" title="loading" /> :
-                  allMusicData.length === 0 ?
-                    <div className='text-white mt-3 fst-italic'>
-                      Be the first to create the <b>MUSIC GENESIS</b>
-                    </div> :
-                    musicBoxes(allMusicData, true)
-              }
-
+            <OuterBox 
+              additionalClass='music-outer-box all-musics'
+              boxTitle='Musics Posted'  
+              isContentLoading={musicsLoading}
+              defaultBoxMsg = {allMusicData.length === 0 ? "Be the first to create the MUSIC GENESIS" : null}
+            >
+              {musicBoxes(allMusicData, true)}
             </OuterBox>
           </div>
           <div className="col-lg-4 col-md-12">
-            <OuterBox additionalClass='music-outer-box my-music'>
-              <h1 className='text-white font-weight-bold'>My musics</h1>
-              {
-                musicsLoading ?
-                  <img className='loading' src={loadingAnimatedIcon} alt="loading" title="loading" /> :
-                  myMusics.length === 0 ?
-                    <div className='text-white mt-3 fst-italic'>
-                      You have not posted any music yet :(
-                    </div> :
-                    musicBoxes(myMusics)
-              }
+            <OuterBox 
+              additionalClass='music-outer-box my-music' 
+              boxTitle='My musics'
+              isContentLoading={musicsLoading}
+              defaultBoxMsg={myMusics.length === 0 ? "You have not posted any music yet :(" : null}
+            >
+              {musicBoxes(myMusics)}
             </OuterBox>
           </div>
         </div>
