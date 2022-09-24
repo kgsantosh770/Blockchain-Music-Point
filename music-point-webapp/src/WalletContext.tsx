@@ -17,6 +17,7 @@ const { ethereum } = window
 function WalletContextProvider({ children }: Props) {
     const [currentAccount, setCurrentAccount] = useState(null)
     const [isConnected, setIsConnected] = useState(false)
+    console.log("isConnected: ", isConnected)
 
 
     const ConnectToWallet = async () => {

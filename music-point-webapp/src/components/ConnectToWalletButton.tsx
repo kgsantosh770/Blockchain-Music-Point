@@ -22,7 +22,6 @@ export default function ConnectToWalletButton() {
     }
 
     function walletStatus() {
-        console.log(isConnected)
         if (connecting) {
             return "Connecting to wallet"
         }
@@ -35,7 +34,6 @@ export default function ConnectToWalletButton() {
     }
 
     function walletIcon() {
-        console.log(connecting ? "connecting" : "not conecting")
         if (connecting)
             return walletConnecting
         else if (isConnected)
