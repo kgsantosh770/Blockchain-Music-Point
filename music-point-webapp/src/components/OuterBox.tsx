@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import "../scss/components/OuterBox.scss"
 import { loadingAnimatedIcon } from "../utils/ImagePaths";
+import { useWalletContext } from "../WalletContext"
 
 interface Props {
     additionalClass?: string,
@@ -18,6 +19,12 @@ const defaultProps = {
 }
 
 export default function OuterBox(props : Props) {
+    const { isConnected } = useWalletContext();
+
+    const getDefaultMsg = () => {
+        return isConnected ? props.defaultBoxMsg : "Please connect your blockchain wallet"
+    }
+    
     return (
         <div className={`outer-box ${props.additionalClass}`}>
             {props.boxTitle && 
@@ -34,7 +41,7 @@ export default function OuterBox(props : Props) {
                 /> :
                 props.defaultBoxMsg ?
                     <div className='text-white mt-3 fst-italic'>
-                        {props.defaultBoxMsg}
+                        {getDefaultMsg()}
                     </div> :
                     props.children
             }
