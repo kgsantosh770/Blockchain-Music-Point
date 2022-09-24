@@ -12,7 +12,7 @@ import { ContractGetAllMusic, ContractPostMusic } from './contracts/MusicPointFu
 
 function App() {
 
-  const { currentAccount } = useWalletContext()
+  const { currentAccount, isConnected } = useWalletContext()
 
   interface Music {
     ownerAdress: string,
@@ -26,14 +26,16 @@ function App() {
   const [musicsLoading, setMusicsLoading] = useState(false)
 
   useEffect(() => {
-    setMusicsLoading(true)
-    ContractGetAllMusic()
-      .then(allMusic => {
-        if(allMusic)
-          setAllMusicData(allMusic)
-      })
-      .then(()=>setMusicsLoading(false))
-  }, [])
+    if (isConnected) {
+      setMusicsLoading(true)
+      ContractGetAllMusic()
+        .then(allMusic => {
+          if (allMusic)
+            setAllMusicData(allMusic)
+        })
+        .then(() => setMusicsLoading(false))
+    }
+  }, [isConnected])
 
   function handlePostMusic(event: FormEvent, _owner: string, _musicUrl: string) {
     event.preventDefault();
@@ -67,18 +69,18 @@ function App() {
             <OuterBox>
               <PostMusic handlePostMusic={handlePostMusic} />
             </OuterBox>
-            <OuterBox 
+            <OuterBox
               additionalClass='music-outer-box all-musics'
-              boxTitle='Musics Posted'  
+              boxTitle='Musics Posted'
               isContentLoading={musicsLoading}
-              defaultBoxMsg = {allMusicData.length === 0 ? "Be the first to create the MUSIC GENESIS" : null}
+              defaultBoxMsg={allMusicData.length === 0 ? "Be the first to create the MUSIC GENESIS" : null}
             >
               {musicBoxes(allMusicData, true)}
             </OuterBox>
           </div>
           <div className="col-lg-4 col-md-12">
-            <OuterBox 
-              additionalClass='music-outer-box my-music' 
+            <OuterBox
+              additionalClass='music-outer-box my-music'
               boxTitle='My musics'
               isContentLoading={musicsLoading}
               defaultBoxMsg={myMusics.length === 0 ? "You have not posted any music yet :(" : null}
