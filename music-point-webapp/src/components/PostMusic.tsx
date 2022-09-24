@@ -8,11 +8,10 @@ interface Props {
 }
 
 export default function PostMusic(props: Props) {
-    const { currentAccount } = useWalletContext()
     const [owner, setOwner] = useState("Anonymous user")
     const [musicUrl, setMusicUrl] = useState("")
     const inputRef = useRef<HTMLInputElement>(null)
-    const { ConnectToWallet, isConnected } = useWalletContext()
+    const { ConnectToWallet, currentAccount, isConnected } = useWalletContext()
 
     useEffect(() => {
         if (currentAccount)
@@ -36,13 +35,13 @@ export default function PostMusic(props: Props) {
     })
 
     const [inputError, setInputError] = useState<null | string>(null)
-    const [urlType, setUrlType] = useState<null | string>(null)
+    let urlType: string | null = null;
 
     const setLinkType = (link: string) => {
         supportedWebUrls.some(supportedUrl => {
             const regex = new RegExp(supportedUrl.regularExpression)
             if (regex.test(link)) {
-                setUrlType(supportedUrl.website)
+                urlType = supportedUrl.website
                 return true;
             }
             return false;
@@ -60,19 +59,20 @@ export default function PostMusic(props: Props) {
         }
 
         setInputError(null)
+        setMusicUrl("")
         return true
     }
 
     function handleSubmit(e: FormEvent) {
         if (inputRef.current)
             inputRef.current.focus();
-        setMusicUrl("")
         ConnectToWallet()
             .then(() => {
                 if (!isConnected)
                     setInputError("Connect to wallet before posting your music.")
-                else (isInputValid())
+                else if(isInputValid()) {
                     props.handlePostMusic(e, owner, musicUrl)
+                }
             })
 
     }
