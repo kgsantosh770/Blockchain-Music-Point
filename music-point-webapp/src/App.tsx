@@ -9,8 +9,6 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import OuterBox from './components/OuterBox'
 import { ContractGetAllMusic, ContractPostMusic } from './contracts/MusicPointFunctions'
-import { loadingAnimatedIcon } from './utils/ImagePaths'
-
 
 function App() {
 
