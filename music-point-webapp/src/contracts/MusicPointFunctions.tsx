@@ -37,10 +37,12 @@ const postMusic = async (url: string) => {
 
       count = await musicPortalContract.getMusicCount();
       console.log("Retrieved total music count...", count.toNumber());
+      return true
     }
   } catch (error) {
     console.log(error);
   }
+  return false
 }
 
 const getAllMusic = async () => {

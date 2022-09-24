@@ -4,14 +4,15 @@ import { useWalletContext } from "../WalletContext"
 import { supportedWebUrls } from "../utils/SupportedMusicWebsites"
 
 interface Props {
-    handlePostMusic: Function
+    handlePostMusic: Function,
 }
 
 export default function PostMusic(props: Props) {
     const [owner, setOwner] = useState("Anonymous user")
     const [musicUrl, setMusicUrl] = useState("")
     const inputRef = useRef<HTMLInputElement>(null)
-    const { ConnectToWallet, currentAccount, isConnected } = useWalletContext()
+    const [posting, setPosting] = useState<boolean>(false)
+    const { ConnectToWallet, currentAccount } = useWalletContext()
 
     useEffect(() => {
         if (currentAccount)
@@ -54,27 +55,32 @@ export default function PostMusic(props: Props) {
             setInputError("The input box is empty.")
             return false
         } else if (urlType === null) {
-            setInputError("Please provide a valid url.")
+            setInputError("Please provide a valid music track url.")
             return false
         }
 
         setInputError(null)
-        setMusicUrl("")
         return true
     }
 
     function handleSubmit(e: FormEvent) {
         if (inputRef.current)
             inputRef.current.focus();
+        setPosting(true)
         ConnectToWallet()
-            .then(() => {
-                if (!isConnected)
+            .then((connected) => {
+                if (!connected)
                     setInputError("Connect to wallet before posting your music.")
-                else if(isInputValid()) {
+                else if (isInputValid()) {
+                    setMusicUrl("")
                     props.handlePostMusic(e, owner, musicUrl)
+                        .then((isPosted: boolean) => {
+                            if (!isPosted)
+                                setInputError("Blockchain music transaction rejected")
+                            setPosting(false)
+                        })
                 }
             })
-
     }
 
     return (
@@ -102,10 +108,10 @@ export default function PostMusic(props: Props) {
                     {inputError && inputError}
                 </div>
                 <button type="submit"
-                    onClick={(e) => handleSubmit(e)}
+                    onClick={(e) => posting ? null : handleSubmit(e)}
                     className="send-music-button"
                 >
-                    Post music
+                    {posting ? "Posting ..." : "Post music"}
                 </button>
             </div>
         </div>

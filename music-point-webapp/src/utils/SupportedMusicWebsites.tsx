@@ -4,6 +4,6 @@ export const supportedWebUrls = [
         website: "spotify",
         imagePath: spotify,
         // eslint-disable-next-line
-        regularExpression: /^https:\/\/[a-z]+.spotify.com\//
+        regularExpression: /^https:\/\/[a-z]+.spotify.com\/track\//
     }
 ]

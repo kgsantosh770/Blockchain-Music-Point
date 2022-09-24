@@ -27,25 +27,33 @@ function App() {
 
   useEffect(() => {
     if (isConnected) {
-      setMusicsLoading(true)
-      ContractGetAllMusic()
-        .then(allMusic => {
-          if (allMusic)
-            setAllMusicData(allMusic)
-        })
-        .then(() => setMusicsLoading(false))
+      getMusicsFromBlockchain();
     }
   }, [isConnected])
 
-  function handlePostMusic(event: FormEvent, _owner: string, _musicUrl: string) {
+  const getMusicsFromBlockchain = async () => {
+    setMusicsLoading(true)
+    ContractGetAllMusic()
+      .then(allMusic => {
+        if (allMusic)
+          setAllMusicData(allMusic.reverse())
+      })
+      .then(() => setMusicsLoading(false))
+  }
+
+  const handlePostMusic = async (event: FormEvent, _owner: string, _musicUrl: string) => {
     event.preventDefault();
     const newMusicObject = {
       ownerAdress: _owner,
       musicUrl: _musicUrl,
       timePosted: new Date()
     }
-    // ContractPostMusic(_musicUrl)
-    //   .then(() => setAllMusicData([newMusicObject, ...allMusicData]))
+    return ContractPostMusic(_musicUrl)
+      .then((posted) => {
+        if(posted)
+          setAllMusicData([newMusicObject, ...allMusicData])
+        return posted
+      })
   }
 
   const musicBoxes = (musicList: AllMusic, isChain = false) => musicList.map((data, i) =>
@@ -67,7 +75,7 @@ function App() {
         <div className="row mt-2">
           <div className="col-lg-8 col-md-12">
             <OuterBox>
-              <PostMusic handlePostMusic={handlePostMusic} />
+              <PostMusic handlePostMusic={handlePostMusic}/>
             </OuterBox>
             <OuterBox
               additionalClass='music-outer-box all-musics'

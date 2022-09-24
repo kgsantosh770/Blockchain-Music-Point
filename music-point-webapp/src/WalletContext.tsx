@@ -4,7 +4,7 @@ declare var window: any;
 interface defaultContextValueType {
     isConnected: boolean,
     currentAccount: string | null,
-    ConnectToWallet: () => Promise<void>,
+    ConnectToWallet: () => Promise<boolean>,
 }
 
 interface Props {
@@ -27,13 +27,15 @@ function WalletContextProvider({ children }: Props) {
                 console.log("Connected", accounts[0]);
                 setCurrentAccount(accounts[0]);
                 setIsConnected(true)
+                return true;
             } else {
                 alert("Get MetaMask!");
-                return;
+                return false;
             }
         } catch (error) {
             setIsConnected(false)
             console.log(error)
+            return false;
         }
     }
 
