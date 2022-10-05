@@ -6,7 +6,9 @@ const main = async() => {
     console.log("Deployer account Balance: ",accountBalance);
 
     const musicContractFactory = await hre.ethers.getContractFactory("MusicPoint");
-    const musicContract = await musicContractFactory.deploy();
+    const musicContract = await musicContractFactory.deploy({
+        value: hre.ethers.utils.parseEther('0.001')
+    });
     await musicContract.deployed();
 
     console.log("Music point contract address: ",musicContract.address);
