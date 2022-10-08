@@ -18,7 +18,12 @@ function WalletContextProvider({ children }: Props) {
     const [currentAccount, setCurrentAccount] = useState(null)
     const [isConnected, setIsConnected] = useState(false)
     console.log("isConnected: ", isConnected)
-
+    
+    useEffect(() => {
+        if(ethereum && ethereum.selectedAddress){
+            ConnectToWallet()
+        }
+    }, [])
 
     const ConnectToWallet = async () => {
         try {
@@ -39,11 +44,6 @@ function WalletContextProvider({ children }: Props) {
         }
     }
 
-    useEffect(() => {
-        if(ethereum.selectedAddress){
-            ConnectToWallet()
-        }
-    }, [])
 
     return (
         <Context.Provider value={{ isConnected, currentAccount, ConnectToWallet }}>

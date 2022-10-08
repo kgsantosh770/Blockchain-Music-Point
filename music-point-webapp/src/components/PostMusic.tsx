@@ -69,8 +69,10 @@ export default function PostMusic(props: Props) {
         setPosting(true)
         ConnectToWallet()
             .then((connected) => {
-                if (!connected)
-                    setInputError("Connect to wallet before posting your music.")
+                if (!connected){
+                    setInputError("Connect to wallet before posting your music.");
+                    setPosting(false);
+                }
                 else if (isInputValid()) {
                     setMusicUrl("")
                     props.handlePostMusic(e, owner, musicUrl)
