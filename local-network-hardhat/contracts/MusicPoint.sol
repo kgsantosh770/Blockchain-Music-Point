@@ -43,7 +43,7 @@ contract MusicPoint {
 
     function postMusic(string memory _url) public {
         require(
-            lastPostedAt[msg.sender] + 15 minutes < block.timestamp,
+            lastPostedAt[msg.sender] + 5 minutes < block.timestamp,
             "Wait for 15 minutes between your posts."
         );
         lastPostedAt[msg.sender] = block.timestamp;
