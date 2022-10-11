@@ -76,11 +76,14 @@ export default function PostMusic(props: Props) {
                 else if (isInputValid()) {
                     setMusicUrl("")
                     props.handlePostMusic(e, owner, musicUrl)
-                        .then((isPosted: boolean) => {
-                            if (!isPosted)
-                                setInputError("Blockchain music transaction rejected")
+                        .then((isPosted: boolean|string) => {
+                            if (isPosted !== true)
+                                setInputError("Post cancelled: " + isPosted.toString().split(": ")[1]);
                             setPosting(false)
                         })
+                }
+                else{
+                    setPosting(false)
                 }
             })
     }

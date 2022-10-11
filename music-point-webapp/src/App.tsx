@@ -49,8 +49,8 @@ function App() {
       timePosted: new Date()
     }
     return ContractPostMusic(_musicUrl)
-      .then((posted) => {
-        if(posted)
+      .then((posted : boolean|string) => {
+        if(posted===true)
           setAllMusicData([newMusicObject, ...allMusicData])
         return posted
       })

@@ -39,8 +39,9 @@ const postMusic = async (url: string) => {
       console.log("Retrieved total music count...", count.toNumber());
       return true
     }
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    console.error(error);
+    return error.reason;
   }
   return false
 }
