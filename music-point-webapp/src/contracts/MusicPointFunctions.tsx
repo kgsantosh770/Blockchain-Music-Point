@@ -86,5 +86,6 @@ const getMusicCount = async () => {
 export {
   postMusic as ContractPostMusic,
   getMusicCount as ContractGetMusicCount,
-  getAllMusic as ContractGetAllMusic
+  getAllMusic as ContractGetAllMusic,
+  getMusicPortalContract as getContract,
 }

@@ -8,7 +8,7 @@ import "./scss/components/App.scss"
 import Header from './components/Header'
 import Footer from './components/Footer'
 import OuterBox from './components/OuterBox'
-import { ContractGetAllMusic, ContractPostMusic } from './contracts/MusicPointFunctions'
+import { ContractGetAllMusic, ContractPostMusic, getContract } from './contracts/MusicPointFunctions'
 
 function App() {
 
@@ -24,6 +24,23 @@ function App() {
 
   const [allMusicData, setAllMusicData] = useState<AllMusic>([])
   const [musicsLoading, setMusicsLoading] = useState(false)
+
+  useEffect(() => {
+    const onPostMusic = (_from: string, _url: string, _timePosted: any) => {
+      setAllMusicData(prevData => [
+        {
+          ownerAdress: _from,
+          musicUrl: _url,
+          timePosted: new Date(_timePosted * 1000),
+        },
+        ...prevData
+      ])
+    }
+
+    const musicPortalContract = getContract();
+    if (musicPortalContract !== false)
+      musicPortalContract.on("PostMusic", onPostMusic)
+  }, [])
 
   useEffect(() => {
     if (isConnected) {
@@ -43,17 +60,7 @@ function App() {
 
   const handlePostMusic = async (event: FormEvent, _owner: string, _musicUrl: string) => {
     event.preventDefault();
-    const newMusicObject = {
-      ownerAdress: _owner,
-      musicUrl: _musicUrl,
-      timePosted: new Date()
-    }
-    return ContractPostMusic(_musicUrl)
-      .then((posted : boolean|string) => {
-        if(posted===true)
-          setAllMusicData([newMusicObject, ...allMusicData])
-        return posted
-      })
+    return ContractPostMusic(_musicUrl);
   }
 
   const musicBoxes = (musicList: AllMusic, isChain = false) => musicList.map((data, i) =>
@@ -75,7 +82,7 @@ function App() {
         <div className="row mt-2">
           <div className="col-lg-8 col-md-12">
             <OuterBox>
-              <PostMusic handlePostMusic={handlePostMusic}/>
+              <PostMusic handlePostMusic={handlePostMusic} />
             </OuterBox>
             <OuterBox
               additionalClass='music-outer-box all-musics'
