@@ -14,5 +14,5 @@ Music point is a decentralized blockchain application developed using React & We
 # Steps to run the web application locally.
 - Clone the repository.
 - Get into the folder `cd blockchain-music-point`
-- Run npm install to install the project dependencies.
-- npm start to run the app in the development mode. Open (http://localhost:3000)[http://localhost:3000] to view it in the browser.
+- Run `npm install` to install the project dependencies.
+- `npm start` to run the app in the development mode. Open (http://localhost:3000)[http://localhost:3000] to view it in the browser.
