@@ -6,10 +6,10 @@ Music point is a decentralized blockchain application developed using React & We
 2. npm
 
 # Major Tech Stack
-ReactJS
-Typescript
-Solidity
-Ether.js
+- ReactJS
+- Typescript
+- Solidity
+- Ether.js
 
 # Steps to run the web application locally.
 - Clone the repository.
